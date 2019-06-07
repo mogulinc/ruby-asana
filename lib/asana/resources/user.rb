@@ -74,6 +74,15 @@ module Asana
         def user_task_list(client, id, workspace_id, options: {})
           Resource.new(parse(client.get("/users/#{id}/user_task_list", params: { workspace: workspace_id }, options: options)).first, client: client)
         end
+
+        def user_task_list_tasks(client, user_task_list_id, completed_since: nil, options: {})
+          params = {}
+          if completed_since
+            params[:completed_since] = completed_since
+          end
+
+          Resource.new(parse(client.get("/user_task_lists/#{user_task_list_id}/tasks", params: params, options: options)).first, client: client)
+        end
       end
 
     end
