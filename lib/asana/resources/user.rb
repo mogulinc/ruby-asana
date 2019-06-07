@@ -70,6 +70,10 @@ module Asana
           params = { workspace: workspace, limit: per_page }.reject { |_,v| v.nil? || Array(v).empty? }
           Collection.new(parse(client.get("/users", params: params, options: options)), type: self, client: client)
         end
+
+        def user_task_list(client, id, workspace_id, options: {})
+          Resource.new(parse(client.get("/users/#{id}/user_task_list", params: { workspace: workspace_id }, options: options)).first, client: client)
+        end
       end
 
     end
