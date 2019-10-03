@@ -79,6 +79,7 @@ module Asana
           params = {}
           if completed_since
             params[:completed_since] = completed_since
+            params[:opt_fields] = 'completed'
           end
 
           Collection.new(parse(client.get("/user_task_lists/#{user_task_list_id}/tasks", params: params, options: options)), type: Task, client: client)
