@@ -81,7 +81,7 @@ module Asana
             params[:completed_since] = completed_since
           end
 
-          Collection.new(parse(client.get("/user_task_lists/#{user_task_list_id}/tasks?opt_fields=completed", params: params, options: options)), type: Task, client: client)
+          Collection.new(parse(client.get("/user_task_lists/#{user_task_list_id}/tasks", params: params, options: options)), type: Task, client: client)
         end
       end
 
