@@ -75,13 +75,13 @@ module Asana
           Resource.new(parse(client.get("/users/#{id}/user_task_list", params: { workspace: workspace_id }, options: options)).first, client: client)
         end
 
-        def user_task_list_tasks(client, user_task_list_id, completed_since: nil, opt_fields: nil, per_page: 20, offset: nil, options: {})
+        def user_task_list_tasks(client, user_task_list_id, completed_since: nil, opt_expand: nil, per_page: 20, offset: nil, options: {})
           params = {}
           if completed_since
             params[:completed_since] = completed_since
           end
-          if opt_fields
-            params[:opt_fields] = opt_fields
+          if opt_expand
+            params[:opt_expand] = opt_expand
           end
           if per_page
             params[:limit] = per_page
